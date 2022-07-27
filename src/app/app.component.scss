@@ -1,0 +1,16 @@
+$primary-color: #6993b8;
+$hover-color: #456f93;
+$default-color: #f0f4f8;
+$base-color: white;
+$base-space: 2px;
+
+.btn {
+  padding: $base-space calc($base-space * 2);
+  margin: $base-space;
+  border-radius: $base-space;
+}
+
+.primary {
+  background-color: $primary-color;
+  color: $base-color;
+}
