@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import places, { PlacesInstance } from 'places.js';
+import { Points } from './models/points';
 
 @Injectable({
   providedIn: 'root',
@@ -18,29 +19,35 @@ export class PlacesService {
     });
   }
 
-  getLocation() {
+  getLocation(): Points | null {
+    let points: Points | null = null;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          return { latitude, longitude };
+          points = { latitude, longitude };
         },
         (error) => {
-          switch (error.code) {
-            case error.PERMISSION_DENIED:
-              alert('User denied the request for Geolocation.');
-              break;
-            case error.POSITION_UNAVAILABLE:
-              alert('Location information is unavailable.');
-              break;
-            case error.TIMEOUT:
-              alert('The request to get user location timed out.');
-              break;
-          }
+          this.handlePositionError(error);
         }
       );
     } else {
       alert('Geolocation is not supported by this browser.');
+    }
+    return points;
+  }
+
+  handlePositionError(error: GeolocationPositionError): void {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        alert('User denied the request for Geolocation.');
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert('Location information is unavailable.');
+        break;
+      case error.TIMEOUT:
+        alert('The request to get user location timed out.');
+        break;
     }
   }
 }

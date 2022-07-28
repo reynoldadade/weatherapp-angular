@@ -1,10 +1,12 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   OnInit,
   Output,
   ViewChild,
 } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PlacesService } from '../places.service';
 
 export interface AlgoliaResults {
@@ -24,17 +26,29 @@ export class SearchComponent implements OnInit {
   //emit an event that will send the location to the parent component
   @Output() searchEmitted = new EventEmitter<AlgoliaResults>();
   // get the input element
-  @ViewChild('places', { static: true }) searchInput: any;
+  @ViewChild('places', { static: true }) searchInput!: ElementRef;
   //  autoComplete instance
   placesAutoComplete: any;
+  // value of search input
+  search: String = '';
+
+  //set up location form
+  locationForm: FormGroup = new FormGroup({
+    city: new FormControl('', [Validators.required]),
+  });
 
   constructor(private places: PlacesService) {}
 
   ngOnInit(): void {
+    // set up auto complete instance
     this.placesAutoComplete = this.places.getPlaces(
       this.searchInput.nativeElement
     );
+    // set change event on auto complete
     this.placesAutoComplete.on('change', this.onPlacesChanged);
+
+    // request for user location
+    this.places.getLocation();
   }
 
   // handle when places change
@@ -42,7 +56,10 @@ export class SearchComponent implements OnInit {
     // get the location
     const { name, country, latlng } = places.suggestion;
     // emit the location
+    const algoliaResults: AlgoliaResults = { name, country, latlng };
 
-    this.searchEmitted.emit({ name, country, latlng });
+    this.searchEmitted.emit(algoliaResults);
   }
+
+  onUseCityToGetWeatherData() {}
 }

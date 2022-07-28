@@ -1,10 +1,11 @@
 <div>
-  <form>
+  <form (ngSubmit)="onUseCityToGetWeatherData()">
     <input
-      type="search"
+      type="text"
       id="places"
       #places
       class="input w-full shadow-md mx-2"
+      formControlName="city"
     />
   </form>
 </div>
