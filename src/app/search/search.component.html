@@ -1,11 +1,9 @@
-<div>
-  <form (ngSubmit)="onUseCityToGetWeatherData()">
-    <input
-      type="text"
-      id="places"
-      #places
-      class="input w-full shadow-md mx-2"
-      formControlName="city"
-    />
-  </form>
+<div class="w-full">
+  <input
+    type="text"
+    id="places"
+    #places
+    class="shadow-md mx-2"
+    [(ngModel)]="search"
+  />
 </div>
