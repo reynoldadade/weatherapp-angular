@@ -1,4 +1,3 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -14,7 +13,7 @@ export class WeatherService {
   //get current weather from weatherapi
   getCurrentWeather(lat: number, lon: number): Observable<any> {
     return this.$http.getRequest(
-      `${environment.baseURL}data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${environment.appId}`
+      `${environment.baseURL}data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${environment.appId}&units=metric`
     );
   }
 

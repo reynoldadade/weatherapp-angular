@@ -41,10 +41,10 @@ export class WeatherCardComponent implements OnInit {
       const [first] = weather;
       return first;
     }
-    // else return  the default weather object
+    // else return the default weather object
     return this.weather;
   }
-  // set show more to inverse
+  // set viewingMore to inverse of viewingMore
   showMore(): void {
     this.viewingMore = !this.viewingMore;
   }
