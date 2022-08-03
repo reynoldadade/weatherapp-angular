@@ -12,7 +12,7 @@ export interface Weather {
   id: number;
   main: string;
   description: string;
-  icon: number;
+  icon: string;
 }
 
 export interface Current {
@@ -39,7 +39,7 @@ export interface Current {
   moon_phase?: number;
 }
 
-export interface TimeOfDay {
+interface TimeOfDay {
   day: number;
   min?: number;
   max?: number;

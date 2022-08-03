@@ -25,6 +25,11 @@ export class WeatherService {
     );
   }
 
+  // weather icon url
+  getWeatherIconUrl(weatherIcon: string): string {
+    return `${environment.weatherIconUrl}${weatherIcon}@2x.png`;
+  }
+
   // since only one day can be made at a time for historical data, we need to make concurrent requests hence the need to create a request array
   createHistoricalDataRequests(
     lat: number,

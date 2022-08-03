@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+$primary-color: #6993b8;
+$hover-color: #456f93;
+$default-color: #f0f4f8;
+$base-color: white;
+$base-space: 0.25rem;
+
+.btn {
+  padding: $base-space calc($base-space * 2);
+  margin: $base-space;
+  border-radius: 10%;
+  border: 0;
+}
+
+.primary {
+  background-color: $primary-color;
+  color: $base-color;
+}
