@@ -1,1 +1,6 @@
-<app-search (searchEmitted)="getCurrentWeather($event)"></app-search>
+<div class="p-2 md:p-40 relative">
+  <app-search (searchEmitted)="getCurrentWeather($event)"></app-search>
+  <div *ngIf="currentWeather">
+    <app-weather-card [currentWeather]="currentWeather"></app-weather-card>
+  </div>
+</div>

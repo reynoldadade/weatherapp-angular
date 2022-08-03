@@ -1,4 +1,31 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
 /* You can add global styles to this file, and also import other style files */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  font-family: "Inter", sans-serif;
+}
+html {
+  @apply bg-gradient-to-r from-cyan-500 to-blue-50;
+  color: #191d24;
+}
+
+.slide-enter-active {
+  animation: Slide 0.3s ease;
+}
+.slide-leave-active {
+  animation: Slide 0.3s ease reverse;
+}
+
+@keyframes Slide {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

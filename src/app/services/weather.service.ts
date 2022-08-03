@@ -1,4 +1,3 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -14,7 +13,7 @@ export class WeatherService {
   //get current weather from weatherapi
   getCurrentWeather(lat: number, lon: number): Observable<any> {
     return this.$http.getRequest(
-      `${environment.baseURL}data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${environment.appId}`
+      `${environment.baseURL}data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${environment.appId}&units=metric`
     );
   }
 
@@ -23,6 +22,11 @@ export class WeatherService {
     return this.$http.getRequest(
       `${environment.baseURL}geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${environment.appId}`
     );
+  }
+
+  // weather icon url
+  getWeatherIconUrl(weatherIcon: string): string {
+    return `${environment.weatherIconUrl}${weatherIcon}@2x.png`;
   }
 
   // since only one day can be made at a time for historical data, we need to make concurrent requests hence the need to create a request array
